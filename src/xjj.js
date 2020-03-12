@@ -116,7 +116,12 @@ function Xiaojiejie (props) {
         <React.Fragment>
             <div>
                 <label htmlFor="service" >Add Service: </label>
-                <input id="service" className='input' value={inputValue} onChange={inputChange} />
+                <input 
+                    id="service"
+                    className='input' 
+                    value={inputValue} 
+                    onChange={inputChange} 
+                />
                 <button onClick={addService}>Add Service</button>
             </div>
 
