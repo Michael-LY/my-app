@@ -19,8 +19,8 @@ import XiaojiejieItem from './xjjItem'
 //             <React.Fragment>
 //                 <div>
 //                     <label htmlFor="service" >Add Service: </label>
-//                     <input id="service" className = 'input' value={this.state.inputValue} onChange = {this.inputChange.bind(this)} />
-//                     <button onClick = {this.addService.bind(this)}>Add Service</button>
+//                     <input id="service" className='input' value={this.state.inputValue} onChange={this.inputChange.bind(this)} />
+//                     <button onClick={this.addService.bind(this)}>Add Service</button>
 //                 </div>
 
 //                 <ul>
@@ -83,6 +83,7 @@ function Xiaojiejie (props) {
 
     const addService = function () {
         setList ([...list, inputValue])
+        setInputValue ('')
     }
 
     const deleteItem = function (index) {
@@ -95,8 +96,8 @@ function Xiaojiejie (props) {
         <React.Fragment>
             <div>
                 <label htmlFor="service" >Add Service: </label>
-                <input id="service" className='input' value={inputValue} onChange = {inputChange} />
-                <button onClick = {addService}>Add Service</button>
+                <input id="service" className='input' value={inputValue} onChange={inputChange} />
+                <button onClick={addService}>Add Service</button>
             </div>
 
             <ul>
