@@ -90,6 +90,7 @@ function Xiaojiejie (props) {
         const newList = list
         newList.splice(index, 1)
         setList (newList)
+        console.log(list)
     }
 
     return (

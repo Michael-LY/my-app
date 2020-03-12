@@ -26,7 +26,7 @@ function XiaojiejieItem (props) {
     }
 
     return(
-        <li key={props.index + props.item} onClick={() => handelClick}>
+        <li key={props.index + props.item} onClick={handelClick}>
             {props.content}
         </li>
     )
