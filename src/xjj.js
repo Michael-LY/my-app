@@ -100,14 +100,12 @@ function Xiaojiejie (props) {
             <ul>
                 {list.map((item, index)=>{
                     return (
-                        <div>
                         <XiaojiejieItem 
                             key = {index + item}
                             content = {item}
                             index = {index}
                             deleteItem = {deleteItem}
-                        /> 
-                        </div>
+                        />
                     )
                 })}
             </ul>
