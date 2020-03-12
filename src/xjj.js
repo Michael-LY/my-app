@@ -1,4 +1,5 @@
 import React, { useState, Component } from "react"
+import axios from "axios"
 import XiaojiejieItem from './xjjItem'
 
 class Xiaojiejie extends Component {
@@ -6,14 +7,23 @@ class Xiaojiejie extends Component {
         super(props)
         this.state={
             inputValue: '',
-            list: [
-                'base',
-                'back'
-            ]
+            list: []
         }
         this.inputChange = this.inputChange.bind(this)
         this.deleteItem = this.deleteItem.bind(this)
         this.addService = this.addService.bind(this)
+    }
+
+    // 从服务器请求远程接口
+    componentDidMount() {
+        axios.get('https://easy-mock.com/mock/5e6a3a8bfae5d12c5d605333/ReactDemo01/xiaojiejie')
+            .then((res)=>{
+                console.log("axios 获取数据成功: " + JSON.stringify(res))
+                this.setState({
+                    list: res.data.data
+                })
+            })
+            .catch((error)=>{console.log("axios 获取数据失败: " + error)})
     }
 
     render() {
@@ -21,20 +31,26 @@ class Xiaojiejie extends Component {
             <React.Fragment>
                 <div>
                     <label htmlFor="service" >Add Service: </label>
-                    <input id="service" className='input' value={this.state.inputValue} onChange={this.inputChange} />
+                    <input 
+                        id="service" 
+                        className='input' 
+                        value={this.state.inputValue} 
+                        onChange={this.inputChange} 
+                        ref={(input) => {this.input=input}}
+                    />
                     <button onClick={this.addService}>Add Service</button>
                 </div>
 
-                <ul>
+                <ul ref={(ul)=>{this.ul=ul}}>
                     {
                         this.state.list.map((item, index) => {
                                     return (
                                             <div>
                                                 <XiaojiejieItem 
-                                                    key = {index + item}
-                                                    content = {item}
-                                                    index = {index}
-                                                    deleteItem = {this.deleteItem}
+                                                    key={index + item}
+                                                    content={item}
+                                                    index={index}
+                                                    deleteItem={this.deleteItem}
                                                 />
                                             </div>
                                         )
@@ -47,14 +63,14 @@ class Xiaojiejie extends Component {
         )
     }
 
-    inputChange (e) {
+    inputChange () {
         // console.log(e.target.value)
         this.setState({
-            inputValue: e.target.value
+            inputValue: this.input.value
         })
     }
 
-    //添加服务
+    // 添加服务
     addService () {
         this.setState({
             list: [...this.state.list, this.state.inputValue],
@@ -62,7 +78,7 @@ class Xiaojiejie extends Component {
         })
     }
 
-    //删除服务
+    // 删除服务
     deleteItem (index) {
         // console.log(index)
         let list = this.state.list
@@ -74,50 +90,51 @@ class Xiaojiejie extends Component {
     }
 }
 
+/*
+// 将class组件修改为function组件
+function Xiaojiejie (props) {
+    const [inputValue, setInputValue] = useState('')
+    const [list, setList] = useState(['back', 'foot', 'base'])
 
-// //将class组件修改为function组件
-// function Xiaojiejie (props) {
-//     const [inputValue, setInputValue] = useState('')
-//     const [list, setList] = useState(['back', 'foot', 'base'])
+    const inputChange = function (e) {
+        setInputValue (e.target.value)
+    }
 
-//     const inputChange = function (e) {
-//         setInputValue (e.target.value)
-//     }
+    const addService = function () {
+        setList ([...list, inputValue])
+        setInputValue ('')
+    }
 
-//     const addService = function () {
-//         setList ([...list, inputValue])
-//         setInputValue ('')
-//     }
+    const deleteItem = function (index) {
+        let newList = list.slice()
+        newList.splice(index, 1)
+        setList (newList)
+        console.log(list)
+    }
 
-//     const deleteItem = function (index) {
-//         let newList = list.slice()
-//         newList.splice(index, 1)
-//         setList (newList)
-//         console.log(list)
-//     }
+    return (
+        <React.Fragment>
+            <div>
+                <label htmlFor="service" >Add Service: </label>
+                <input id="service" className='input' value={inputValue} onChange={inputChange} />
+                <button onClick={addService}>Add Service</button>
+            </div>
 
-//     return (
-//         <React.Fragment>
-//             <div>
-//                 <label htmlFor="service" >Add Service: </label>
-//                 <input id="service" className='input' value={inputValue} onChange={inputChange} />
-//                 <button onClick={addService}>Add Service</button>
-//             </div>
-
-//             <ul>
-//                 {list.map((item, index)=>{
-//                     return (
-//                         <XiaojiejieItem 
-//                             key = {index + item}
-//                             content = {item}
-//                             index = {index}
-//                             deleteItem = {deleteItem}
-//                         />
-//                     )
-//                 })}
-//             </ul>
-//         </React.Fragment>
-//     )
-// }
+            <ul>
+                {list.map((item, index)=>{
+                    return (
+                        <XiaojiejieItem 
+                            key = {index + item}
+                            content = {item}
+                            index = {index}
+                            deleteItem = {deleteItem}
+                        />
+                    )
+                })}
+            </ul>
+        </React.Fragment>
+    )
+}
+*/
 
 export default Xiaojiejie

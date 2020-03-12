@@ -6,7 +6,17 @@ class XiaojiejieItem extends Component {
         super(props)
         this.handleClick=this.handleClick.bind(this)
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.content !== this.props.content){
+            return true
+        } else {
+            return false
+        }
+    }
+
     render () {
+        console.log("child- render")
         return (
             <li key={this.props.index + this.props.item} onClick = {this.handleClick}>
                 {this.props.content}
@@ -20,24 +30,30 @@ class XiaojiejieItem extends Component {
     }
 }
 
-// //将class组件修改为function组件
-// function XiaojiejieItem (props) {
-//     const handelClick = function () {
-//         props.deleteItem(props.index)
-//     }
+/*
+// 将class组件修改为function组件
+function XiaojiejieItem (props) {
+    const handelClick = function () {
+        props.deleteItem(props.index)
+    }
 
-//     return(
-//         <li key={props.index + props.item} onClick={handelClick}>
-//             {props.content}
-//         </li>
-//     )
-// }
+    return(
+        <li key={props.index + props.item} onClick={handelClick}>
+            {props.content}
+        </li>
+    )
+}
+*/
 
-//数据类型校验
+// 数据类型校验
 XiaojiejieItem.prototypes = {
     content: PropTypes.string,
     index: PropTypes.number,
     deleteItem: PropTypes.func
+}
+
+XiaojiejieItem.defaultProps={
+    name:"mok"
 }
 
 export default XiaojiejieItem
