@@ -19,6 +19,7 @@ import React from 'react'
 //     }
 // }
 
+//将class组件修改为function组件
 function XiaojiejieItem (props) {
     const handelClick = function () {
         props.deleteItem(props.index)

@@ -71,6 +71,8 @@ import XiaojiejieItem from './xjjItem'
 //     }
 // }
 
+
+//将class组件修改为function组件
 function Xiaojiejie (props) {
     const [inputValue, setInputValue] = useState('')
     const [list, setList] = useState(['back', 'foot', 'base'])
@@ -112,7 +114,5 @@ function Xiaojiejie (props) {
         </React.Fragment>
     )
 }
-
-
 
 export default Xiaojiejie
