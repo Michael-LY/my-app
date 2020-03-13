@@ -2,6 +2,7 @@ import React, { useState, Component } from "react"
 import axios from "axios"
 import XiaojiejieItem from './xjjItem'
 
+/*
 class Xiaojiejie extends Component {
     constructor(props){
         super(props)
@@ -89,8 +90,9 @@ class Xiaojiejie extends Component {
         console.log(this.state.list)
     }
 }
+*/
 
-/*
+
 // 将class组件修改为function组件
 function Xiaojiejie (props) {
     const [inputValue, setInputValue] = useState('')
@@ -127,6 +129,7 @@ function Xiaojiejie (props) {
 
             <ul>
                 {list.map((item, index)=>{
+                    if (item.indexOf('a') === -1) {
                     return (
                         <XiaojiejieItem 
                             key = {index + item}
@@ -134,12 +137,12 @@ function Xiaojiejie (props) {
                             index = {index}
                             deleteItem = {deleteItem}
                         />
-                    )
+                    )}
                 })}
             </ul>
         </React.Fragment>
     )
 }
-*/
+
 
 export default Xiaojiejie
