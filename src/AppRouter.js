@@ -1,23 +1,17 @@
 import React from 'react'
-import { BrowserRouter, Route, Link} from 'react-router-dom'
-
-function Index() {
-    return <h2>JSPang.com</h2>
-}
-
-function List() {
-    return <h2>List Page</h2>
-}
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+import LoginPanel from './pages/LoginPage'
+import SignUp from './pages/SignInPage'
 
 function AppRouter() {
     return (
         <BrowserRouter>
             <ul>
-                <li><Link to='/'>首页</Link></li>
-                <li><Link to='/list/'>列表</Link></li>
+                <li><Link to='/pages/LoginPage'>登录</Link></li>
+                <li><Link to='/pages/SignInPage'>注册</Link></li>
             </ul>
-            <Route path='/' exact component={Index} />
-            <Route path='/list' component={List} />
+            <Route path='/pages/LoginPage' exact component={LoginPanel} />
+            <Route path='/pages/SignInPage' exact component={SignUp} />
         </BrowserRouter>
     )
 }
